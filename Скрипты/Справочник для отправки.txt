@@ -1,0 +1,455 @@
+﻿Справочник 
+
+=========БАЗЫ/СХЕМЫ=================
+схема	настроечные данные	логин				пароль
+_________________________________________________________
+CBS3T						colvir				cbstest3t
+CBS3X						colvir				testCBS3X
+CBS3Z						colvir				alltest39
+_________________________________________________________
+
+
+select t_Pkgdeaprm.fParByCode(p_id, p_dep_id,'Z_026_REST_VID') into c_par_val from dual;
+пакеты
+
+Z_026_PKG_CMSAUTO автоматические операции
+
+/*+ PARALLEL */
+
+
+--склонение фамилий
+Z_026_PKG_SKLONENIE.NAME_TVOR(G_CLIHST.PNAME1,0)
+
+--Времянка
+select * from z_026_credreg_temp_table_1
+select * from COLVIR.Z_026_VREM V
+colvir.z_026_cms_auto_sing --временная
+
+Аналитика = это что выделено белым(буквами: CR_PDEXP_PEN_N )
+
+
+\\ALFA-BANK.KZ\root\applications\Colvir\Reports
+
+
+\\alfa-bank.kz\root\applications\Colvir\Colvir\credreg
+
+-- шаблоны Договора
+T_DEACLS.ID = T_DEA.DCL_ID
+
+-- Счета ГК
+ledacc id это cha_id в g_accblnhst или G_ACCBLN
+
+Параметры договора: через MDEAPRM
+t_Pkgdeaprm.fParByCode(d.id, d.dep_id, 'Z_026_FLLONGMISS') 
+
+Аналитика договора: через VGRCON
+G_fconName('КР16_ПАКЕТ', d.dep_id, d.id, 0)
+G_FJCONCODE('КР16_ПАКЕТ', d.dep_id, d.id, 0)
+
+
+
+===== ПОЛЕЗНЫЕ ПАКЕТЫ =========
+G_PKGACCBLN для работы со счетами
+
+===== К О Н Т. П Е Р Е М. ===== 
+begin 
+  c_pkgconnect.popen();
+  c_pkgsession.doper:= trunc(sysdate);
+end;
+
+--P_OPERDAY
+
+call dbms_session.reset_package();
+
+===== Т А Б Л И Ц Ы ===== 
+S_ORDDSC_STD - виды документов КСО
+C_DEP - Подразделения 
+T_DEA - Сделки и договора
+T_DEACLS_STD - Классификатор сделок 
+D_DEA - Депозитный договор розничной системы
+L_DEA - Договор кредита
+S_ACCDEA - Договора РКО
+G_ACCBLN - Лицевой счёт  
+G_ACCBLNHST - История лицевого счета
+T_ACCGRP - Группы доступа к объектам уч. 
+G_CLI - Учетная запись клиента (субъекта) 
+G_CLIHST - История клиента 
+T_ORD - Документ 
+T_PROCESS - Процессы 
+T_PROCMEM - Участники процесса 
+T_VAL - Валюты
+LEDACC_STD - Счета ГК
+T_TRNDTL - Детальный журнал проводок транзакции
+T_OPERJRN - Журнал операций
+J_LET - Аккредитивы
+J_GRN - Гарантии
+C_REGRUNREP - Запуск отчетов
+z_026_t_sotr_extend - Пользователи
+M_CSHDSC - Справочник касс
+G_CLIPHONE - Телефонные номера субъектов (DEP и ID Клиента)
+G_CLIEMAIL - Адреса электронной почты субъектов (DEP и ID Клиента)
+G_CLIWWW - Адреса WWW-страниц (DEP и ID Клиента)
+A_RESPRS - Материально-ответственные лица
+S_ORDCASH - Кассовые документы
+S_INICASH - Инициатор инкассового распоряжения
+H_DISMISS - Причины увольнения
+T_OPERDET - Детальный журнал значений атрибутов выполненной операции
+T_OPRCHR_STD - Символы проводок в операциях
+T_BOP_DSCR_STD - Описание бизнес процессов
+L_MORTGAGE - Объекты залога
+L_REAL_ESTATE - Объект залога недвижимое имущество
+T_SCEN - Сценарии бизнес операций
+T_BOP_STAT - состаоняие процесса
+C_USR - пользователи
+KREQDOC - список счетов к оплате
+
+===== О Б О З Н А Ч Е Н И Е  В  Т А Б Л И Ц А Х =====
+IIN - РНН
+TAXCODE - ИИН
+
+===== П Р О Ц Е Д У Р Ы ===== 
+P_OPERDAY - Возвращает актуальный операционный день для работающего пользователя 
+P_CUSTCODE - Функция возвращает код кастомизации инстанции (клиента) 
+
+===== З А Д А Ч И ===== 
+ACCMSG - сообщения
+MROLSET - доп параметры карточки клиентов
+CRD - Персонал (зарплата)
+MCHROP - Классификация операций
+MDEAPRM - Классификатор параметров продуктов 
+GRN - Гарантии
+DD1 - Словарь данных 
+DD7 - Лицевые cчета клиентов 
+DDPVCS - Работа с измененными объектами системы 
+SLOAN - Список кредитных договоров 
+SLLOAN - Кредитные линии 
+SYST - Фоновые задания 
+DOP1 - Настройка бизнес-процессов 
+CFGSETUP - Настройка классов конфигурации (Накат) 
+MDEACLS - Классификатор шаблонов продуктов 
+SCASHVIEW - приходный кассовый ордер
+DYN - динамический для доп. атрибутов по счету
+MEXC - Обменный пункт
+MEXCRAT - Обменные курсы валют для клиентских конвертаций
+VGRCON - Аналитика договора
+SPAYVIEW - Переводы
+CLIEXCREQ - Конвертация Заявка клиента на продажу валюты
+MUSERL - пользователи
+DD4 - аналитика на счете
+LET - Аккредитивы
+E_IBNKDPS - межбанк деп.
+W3CLI - Интернет банкинг
+DDEPO - Депозиты
+reqpay - международный платеж
+FSNDPAY - Исходящие платежи
+FRCVPAY - Входящие платежи
+DEARKO - Договоры банковского счета
+MLONGORD - Ведение длительных поручений
+DIS - Причины увольнения
+MORTGL - Объекты залога
+SBJAREA - пользователями
+INKASSO - сделки инкассо
+EQUCARDOS - инвентарная карточка
+GETCOMMIS - комиссия
+COLLDEAL - инкассация
+SSAFEORD- договор на сейфовое обслуживание
+SSAFELST - сейф (сейфовая ячейка)
+
+TREPRT - отчеты
+
+MASSOPER - Массовые операции
+DOP1 - Бизнес процессы ---->>> настройка ссенария кнопка
+COPPER - Состояние операционных периодов
+
+
+SORDPAY  - тенговые исходящие 020111
+SPAYJR   - входящие  
+FOREX - дилинговые операции в иностранной валюте
+CMENUS - роли и задачи
+
+BNDDEAL - сделки прямое автоматическо репо (сделки по ценным бумагам)
+SORDCASH - приходный кассовый ордер
+MUSERL - инфа о пользователе
+
+----------------------
+LET - договор акредитива
+SORDPAY - мемориальный ордер
+===== М А К Р О Я З Ы К ===== 
+@F_ - поле базы данных; 
+@С_ - хранимая процедура; 
+@P_ - параметр отчета; 
+@L_ - псевдоним функции из специального списка; 
+@S_ - получение значения накопленной суммы по псевдониму 
+(в виде денежной суммы, т.е. 111 222 333 444.55 ); 
+
+Если в отчете нужно итоговые суммы отображать с разделителем тысяч ‘,’ 
+нужно вместо @S_ использовать @X_. 
+@S_ - получение значения накопленной суммы по псевдониму (в виде целого числа). 
+@K_ - получение значения ключа вложенной таблицы по имени ключевого поля; 
+@T_ - псевдонимы столбцов итоговых таблиц. 
+@V_ - внутренняя переменная отчета 
+@A_ - поле дополнительного запроса Например, чтобы получить в ячейке 
+отчета значение поля NAME, в бланке отчета в эту ячейку нужно вписать @F_ NAME. 
+
+
+ПОЛЬЗОВАТЕЛИ 
+select * from z_026_t_sotr_extend where novell = '3151'
+
+грант
+grant execute on COLVIR.Z_026_PKG_DEPOCARD_COM to COLVIR_USER;
+
+
+Параметры формы F_G_CLIADD
+
+======================Функции============================
+
+Последняя дата поступления денег на счет
+T_LstDateMovVal(ah.val_id,a.dep_id, a.id,0,0,p_operday)
+
+-- Получение раб. даты
+select c_pkgdate.fGetDateOD('20.12.14') from dual
+
+-- сессия по другим пользователем
+begin
+c_pkgconnect.popenlink('AE_KASSA7');
+end;
+
+Получение курса валюты 
+z_fgetratenatval(NVL(o.val_id,1),c_pkgdate.fnext(:dt,2,1)) 
+C_PkgVal.fGetRateNatVal(nvl(z.val_id,1),p_operday))
+
+-- Возращает номер лицевого счета согласно БПС 
+select z_loansnew.fgetdepcodebalaccdea_2(d.dep_id, d.id,'03101') from dual; 
+
+-- Возращает процент по кредитy из нового модуля 
+select z_loansnew.fgetcreditpercent(d.dep_id, d.id) from dual;
+ 
+-- движение по аналитическому счету;
+Z_026_ASSISTS_REPORTS.fdeaaccbalmov(2, 115707873, 'CR_COM', 1,'01.01.15','23.04.15', 1);
+
+-- Возвращает код валюты 
+select t_pkgval.fgetcode(o.val_id) from dual; 
+
+-- количество дней кредита
+to_number(LocalFrmt('%0:s', vargs(d.todate - d.fromdate), 'PKG', 'T_PKGDEAPER'))
+
+-- Возращает остаток по аналитическому счету 
+select z_loansnew.fgetaccbalsum(d.dep_id, d.id,'CR_BAL') from dual; 
+
+-- Возврат остатка по договорному счету с аналитико 
+select t_pkgarlrun.fdeaaccbal (d.dep_id, d.id, 'CR_EXP_PD', o.val_id, :dfrom) from dual; 
+
+-- Функция расчета полного остатка 
+select t_pkgaccbal.faccbal (acc.dep_id, acc.id, :d_date, 0, o.val_id, 0, 0) from dual; 
+
+-- Возвращает сумму транзакции по счетам ГК 
+select z_pkgspr.fgettrnsumbynps (t_process.id, '1417', 0, NULL, :datefrom, 1) from dual; 
+
+-- параметр договора наличие длит поручения 
+t_Pkgdeaprm.fParByCode(d.id,d.dep_id,'Z_026_FLLONGMISS') as F_long 
+
+--проставление параметра на договоре
+t_pkgdeaprm.psetprm (i_dea_id, i_cli_dep_id, 'isAlfaClick', '1');
+
+-- Расчет эквивалент периода к месяцах 
+return NUMBER t_pkgdeaper.fDeaPerUnit (dd.prd_id, d.fromdate, d.todate, d.dcl_id) 
+
+-- Отсечение банковских счетов. 
+and GL_ANL.fAccAnlValue(ah.dep_id, ah.id,'IBAN_BNKACCFL')='0' 
+
+--Аналитика на счете
+Z_CMS_AUTO.faccanlvalue(a.dep_id, a.id, 'T_DEACLS') 
+
+-- Чтение доп информации с карточки килента, задача 
+DD1 форма 
+G_FCLIADD G_PkgCli.fGetAddAttr(i.dep_id, i.id ,'ALFAMOBILE',in_date) 
+
+-- проверка на льготный период на кридитной карте. Если льготный период, то %% не показываем. 
+select L_PKGLOANCORE.fIsGracePer(2,62536978) from dual 
+
+-- для отладки 
+t_log.writel(p_debug, LocalFrmt('Документ отправителя: %0:S', vargs(:$operation.DOC_INFO))); 
+t_log.writel(p_debug, LocalFrmt('', vargs())); 
+
+-- Аналитика договора
+G_fConName('LOAN_PERIOD',d.dep_id ,d.id,0)
+G_PKGCON.fGetLName(10663, 9430261, et.dep_id, 101422088, 0, 'L') наименование 
+
+ (select G_PKGCON.fGetLName(t1.ID, o1.ID_OBJ, d.dep_id, d.id, 0, 'L') as VALUE
+               from G_CONSRC o1, G_CON t1, T_DEACLS d1
+               where t1.ID_HI is null and t1.ARCFL = 0 and t1.CODE = 'КР15_СТР'
+               and o1.CHI_ID = t1.ID and o1.CON_ID = t1.ID and o1.ID_OBJ = d1.ENT_ID  and d1.ID = c.ID)
+------------------------------------------------------
+
+-- Зачитка аналитик с карточки клиента, из поля доп инфо 
+Select GL_ANL.fAccAnlValue(2, 473780,'NACE') from dual; 
+select G_PkgCli.fGetAddAttr(2, 473780,'NACE') from dual; 
+
+-- Функция возврата признака банковского счета 1 - банковский / 0 - клиентский (Аналитика)
+DD4 select GL_ANL.fAccAnlValue(ach.dep_id, ach.id,'IBAN_BNKACCFL') from dual; 
+
+-- Функция разрезки текстовых полен на несколько значений 
+select c_pkgstring.finstr ( NVL(z_dtl.nazn, z.nazn), 35, 1..100) from dual 
+
+-- Функция получения названия месяца на кириллице 
+select to_char(TO_DATE('01.01.2013','dd-mm-yyyy'),'month','NLS_DATE_LANGUAGE = Russian') from dual;
+
+
+sum(T_DEA.SDOK * nvl(T_PkgVal.fGetRate( T_PkgVal.fGetCode(T_ORD.VAL_ID), T_PkgVal.fGetCode(1), T_ORD.DRECV),1)) as SUMITOGO, --курс
+
+gl_anl.faccanlvalue (ga.dep_id, ga.id, 'CARDACC') - карт счет
+
+--**********************************************
+Движение по счету
+--ДЕБИТ
+T_PKGACCMOV.FGETACCMOV(a.dep_id, a.id, '01.01.2014', '01.11.2014', 1, 0, 0, 0, 0) , 
+--КРЕДИТ
+T_PKGACCMOV.FGETACCMOV(a.dep_id, a.id, '01.01.2014', '01.11.2014', 1, 0, 1, 0, 0) ,
+--**********************************************
+----
+Доп атрибут с лицевого счета
+Задача DYNFRM
+Атрибуты Z_ATRPLAST
+
+z_026_pkgtwo.fGetDopAcc(a.dep_id,a.id,'Z_ZPPROJECTFL')
+--
+
+--сумма на аналитике
+z_026_assists_reports.fGetSumAnlAcc(o.dep_id, o.id, '6126','DEA', o.val_id, P_OPERDAY)
+
+
+Select T_PKGFORM.fGetByCode(2, 49283133, 'Z_ATRPLAST\Z_ZPPROJECTFL') from dual;---зачитка аналитик с карточки клиента, из поля доп инфо, dep_id,ord_id,code---g_accbln Динамические анкеты
+
+
+Select T_PKGFORM.fGetByCode(2, 49283133, 'Z_ATRPLAST\Z_ZPPROJECTFL') from dual;---
+
+g_pkgcli.fGetCliCodeAcc(acc.code, acc.dep_id,p_operday)---acc - счет, выводит код клиента
+
+Nfgetmovacc ('KZ919471840000019402', 'XS0179958805',  to_date('01.04.2013','dd.mm.yyyy'), to_date('30.04.2013','dd.mm.yyyy'), 1)
+
+*******************************************************************************************************
+begin c_pkgconnect.pOpenLink('CASHIER6'); end;
+SELECT id, longname  FROM c_usr where user_name = 'CASHIER6'
+										
+begin c_pkgconnect.pOpenLink('CASHIER2'); end;
+SELECT id, longname FROM c_usr where user_name = 'CASHIER2'; 
+begin c_pkgconnect.pOpenLink('CASHIERCHIEF'); end;
+
+select p_idus from dual;  
+
+SELECT longname  FROM c_usr where id = 1246;
+
+*******************************************************************************************************
+
+-- Остаток из процесинга счетов
+to_money(nvl(G_PKGCAPBAL.fAddPln(a.dep_id, a.id,p_operday,0, nvl(ah.val_id,1), 0, 2),0))
+
+
+G_PkgCli.fGetAddAttr(g.dep_id, g.id,'CLIDEP') = '3050'  зачитка аналитик с карточки клиента  g_cli
+
+(select wm_concat( substr(replace(replace(replace(PNUM,'-',''),' ',''),'+7','8'),1,11)) as t_num
+            from G_CLIPHONE where DEP_ID = g.dep_id and ID = g.id and PTYPE = '3' and BASFL = '1' and ARCFL = '0') as mobile_phone_OSN,
+
+
+(select wm_concat( substr(replace(replace(replace(PNUM,'-',''),' ',''),'+7','8'),1,11)) as t_num
+            from G_CLIPHONE where DEP_ID = g.dep_id and ID = g.id and PTYPE = '3' and nvl(BASFL,'0') = '0' and ARCFL = '0') as mobile_phone_oth,
+
+(select wm_concat( replace(replace(PNUM,'-',''),'+7','8')) as t_num
+            from G_CLIPHONE where DEP_ID = g.dep_id and ID = g.id and PTYPE = '1' /*and BASFL = '1'*/ and ARCFL = '0') as phone_others   
+
+
+z_loansnew.fGetCreditPercent   ----Проценты по кредиту
+
+
+T_PkgMoney.fTrnMoneyToWordVal( substr(to_money(d.SDOK, v.MULTIPLIER),1,27),v.id) as sum_pr1-----сумма прописьными
+
+T_PkgMoney.fTrnPcnWord(t_Pkgdeaprm.fParByCode(d.id,d.dep_id,'APRValue'))-----процент прописьными
+Z_026_WORD_kz.fTrnPcnWord_kz(t_Pkgdeaprm.fParByCode(d.id,d.dep_id,'APRValue'))-----процент прописьными (Kz)
+
+-- процент прописьными
+    SELECT get_sum_str('15'),
+           get_sum_str('15.95')
+      FROM DUAL
+
+
+--t_Pkgdeaprm.fParByCode(dd.id,dd.dep_id,'M_DAYPAY') as F_long
+
+--select * from  T_DEAPRMDSC
+--where longname like '%Iiia? aiy%'
+-------------
+g_pkgcli.fgetaddattr (gh.dep_id, gh.id, 'ACTIVITY') -- получение доп информации по клиенту
+
+Проверка Директории
+DECLARE
+ ex    BOOLEAN;
+ flen  NUMBER;
+ bsize NUMBER;
+BEGIN
+  utl_file.fgetattr('IMP_LOAD_CSV', '11sd.CSV', ex, flen, bsize);
+
+  IF ex THEN
+    dbms_output.put_line('File Exists');
+  ELSE
+    dbms_output.put_line('File Does Not Exist');
+  END IF;
+  dbms_output.put_line('File Length: ' || NVL(flen, 0));
+  dbms_output.put_line('Block Size: ' || TO_CHAR(bsize));
+END;
+
+
+ДОП АТРИБУТ СЧЕТА
+
+select /*+ choose*/ a.*
+            from T_FRMVAL t, T_FRMATR a
+            where t.DEP_ID = 2 and t.ID = 100816972 and t.FRM_ID = a.ID
+
+
+Остановка и Вывод
+raise_application_error(-20000,sMes);
+
+-- Полное Ф.И.О. заемщика в корректном падеже
+(z_026_pkg_sklonenie.name_rod(CLIH.PNAME1, 0)||' '||
+ z_026_pkg_sklonenie.name_rod(CLIH.PNAME2, 0)||' '||
+ z_026_pkg_sklonenie.name_rod(CLIH.PNAME3, 0)) ROD_NAME
+
+-- По счетам вид бизнеса или анкета клиента
+AND G_PkgCli.fGetAddAttr(CLI.DEP_ID, CLI.ID ,'VIDBIZN', &DT) = 'КБ'
+
+-- Признак "Выплаты ГЦВП" DD7
+AND NVL(Z_CMS_AUTO.FACCANLVALUE(G_ACCBLN.DEP_ID, G_ACCBLN.ID, 'Z_GCVP'), '0') as GCVP
+
+дата начала это T_DEA.FROMDATE
+Дата завершения это T_DEA.TODATE
+Дата регистрации это T_ORD.DORD
+
+-- Карточный счет
+Z_CMS_AUTO.faccanlvalue(A.DEP_ID, A.ID, 'CARDACC') <-- Лицевой счет
+
+-- полный остаток
+t_pkgaccbal.faccbal (acc.dep_id, acc.id, :d_date, 0, o.val_id, 0, 0)
+
+-- остаток долга по кредиту
+select z_loansnew.fgetaccbalsum(d.dep_id, d.id,'CR_PD') from dual;
+select z_loansnew.fgetaccbalsum(d.dep_id, d.id,'CR_BAL') from dual;
+
+-- Клиент
+G_PKGCLI.FGETADDATTR(G.DEP_ID, G.ID, 'CLIDEP') AS CLIDEP, -- код филиала
+Z_026_SOTR.FGETCONTACT(GH.DEP_ID, GH.ID, 'PHN', 'MOBILE') AS MOB, -- мобильный телефон
+Z_026_SOTR.FGETCONTACT(GH.DEP_ID, GH.ID, 'PHN', 'WORK') AS TELW, -- дополнительный телефон
+Z_026_SOTR.FGETCONTACT(GH.DEP_ID, GH.ID, 'PHN', 'HOUSE') AS TELH, -- городской телефон
+G_PKGCLI.FGETADDATTR(G.DEP_ID, G.ID ,'ALFAMOBILE') AS ALFAMOBILE, -- услуга альфа мобайл
+G_PKGCLI.FGETADDATTR(G.DEP_ID, G.ID ,'ALFACHECK') AS ALFACHECK, -- услуга альфа чек
+G_PKGCLI.FGETADDATTR(G.DEP_ID, G.ID ,'ALFACLIK') AS ALFACLIK -- услуга альфа клик
+
+-- Код Клиента отправителя
+g_pkgcli.fGetCliCodeAcc(S_REQINT.CODE_AP, T_DEA.DEP_ID, &DT2) AS CODE
+
+-- ФИО Клиента отправителя
+g_pkgcli.fGetCliNameAcc(S_REQINT.CODE_AP, T_DEA.DEP_ID, &DT2) AS GLONGNAME
+
+
+
+
+
+Код отчета Z_026_CLI_IPDL		
+Дата и время формирования		 @E_(select to_char(sysdate,'DD:MM:YYYY HH24:MI:SS') from dual)
